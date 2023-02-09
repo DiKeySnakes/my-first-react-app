@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Overview = (props) => {
+function Overview(props) {
   const { tasks } = props;
 
   return (
@@ -10,6 +10,6 @@ const Overview = (props) => {
       })}
     </ul>
   );
-};
+}
 
 export default Overview;
