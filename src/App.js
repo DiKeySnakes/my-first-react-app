@@ -3,6 +3,7 @@ import Overview from './components/Overview';
 import uniqid from 'uniqid';
 
 function App() {
+  const [number, setNumber] = useState(1);
   const [text, setText] = useState('');
   const [id, setId] = useState(uniqid());
   const [tasks, setTasks] = useState([]);
@@ -14,7 +15,8 @@ function App() {
 
   const onSubmitTask = (e) => {
     e.preventDefault();
-    setTasks(tasks.concat({ text, id }));
+    setNumber(number + 1);
+    setTasks(tasks.concat({ number, text, id }));
     setText('');
     setId(uniqid());
   };
