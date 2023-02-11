@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Overview from './components/Overview';
 import uniqid from 'uniqid';
+
+const LOCAL_STORAGE_KEY = 'todoApp.tasks';
 
 function App() {
   const [complete, setComplete] = useState(false);
   const [text, setText] = useState('');
   const [id, setId] = useState(uniqid());
   const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const storedTasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (storedTasks.length !== 0) {
+      setTasks(storedTasks);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -26,7 +39,6 @@ function App() {
     const newTasks = [...tasks];
     const task = newTasks.find((task) => task.id === id);
     task.complete = !task.complete;
-    console.log(task);
     setTasks(newTasks);
   };
 

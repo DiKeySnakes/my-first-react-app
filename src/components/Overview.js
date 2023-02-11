@@ -5,13 +5,11 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 function Overview({ tasks, deleteTask, completeTask }) {
   const handleClick = (e) => {
     const id = e.target.parentNode.parentNode.id;
-    console.log(id);
     deleteTask(tasks, id);
   };
 
   const handleCompleteTaskClick = (e) => {
     const id = e.target.id;
-    console.log(id);
     completeTask(id);
   };
 
@@ -29,6 +27,9 @@ function Overview({ tasks, deleteTask, completeTask }) {
             {task.text}{' '}
             <button id={task.id} onClick={handleClick}>
               <FontAwesomeIcon icon={solid('trash-can')} />
+            </button>{' '}
+            <button id={task.id}>
+              <FontAwesomeIcon icon={solid('edit')} />
             </button>
           </li>
         );
