@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (storedTasks.length !== 0) {
+    if (storedTasks) {
       setTasks(storedTasks);
     }
   }, []);
