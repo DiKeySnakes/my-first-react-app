@@ -47,6 +47,16 @@ function App() {
     setTasks(newTasks);
   };
 
+  const editTask = (tasks, id) => {
+    const newTasks = [...tasks];
+    console.log(newTasks);
+    const task = newTasks.find((task) => task.id === id);
+    console.log('task:', task);
+    const taskTitle = task.text;
+    setText(taskTitle);
+    deleteTask(tasks, id);
+  };
+
   const handleClearCompleteTasks = () => {
     const newTasks = tasks.filter((task) => !task.complete);
     setTasks(newTasks);
@@ -59,6 +69,7 @@ function App() {
         tasks={tasks}
         completeTask={completeTask}
         deleteTask={deleteTask}
+        editTask={editTask}
       />
       <form onSubmit={onSubmitTask}>
         <label htmlFor='taskInput'>Enter task</label>
